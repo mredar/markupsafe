@@ -142,7 +142,7 @@ class Markup(text_type):
                     return unichr(int(name[1:]))
             except ValueError:
                 pass
-            return u''
+            return unicode(''.join(('&', name, ';')))
         return _entity_re.sub(handle_match, text_type(self))
 
     def striptags(self):

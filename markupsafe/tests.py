@@ -147,6 +147,16 @@ class MarkupTestCase(unittest.TestCase):
     def test_mul(self):
         self.assertEqual(Markup('a') * 3, Markup('aaa'))
 
+    def test_overaggressive_unescape(self):
+        '''The unescape function acts in an extremely aggressive manner,
+        return blank strings for XML/HTML entity "like" strings.
+        See test
+        '''
+        pathological = '1 film negative : b&w ;'
+        self.assertEqual(Markup(pathological).unescape(),
+            '1 film negative : b&w ;'
+        )
+
 
 class MarkupLeakTestCase(unittest.TestCase):
 
